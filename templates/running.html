@@ -1,0 +1,32 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <div>
+        <h2>Current Invasion</h2>
+        <h1 id="countdown" class="running" title="{{ start.isoformat() }}"></h2>
+    </div>
+
+    <script>
+        (function () {
+            var countdownNode = document.getElementById('countdown');
+            var startDate = new Date(countdownNode.getAttribute('title'));
+            var endDate = new Date(startDate);
+            endDate.setTime(endDate.getTime() + (8 * 60 * 60 * 1000));
+            console.log('end date', endDate);
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            function updateCountdown() {
+                var now = new Date();
+                var delta = endDate - now;
+
+                var hours = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((delta % (1000 * 60)) / 1000);
+
+                countdownNode.textContent = hours + 'h ' + minutes + 'm ' + seconds + 's';
+            }
+        }());
+    </script>
+{% endblock %}

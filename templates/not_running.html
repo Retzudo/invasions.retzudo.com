@@ -1,0 +1,31 @@
+{% extends 'master.html' %}
+
+{% block body %}
+    <div>
+        <h2>Next Invasion</h2>
+        <h1 id="next-date" title="{{ next_date.isoformat() }}">{{ next_date }}</h2>
+        <h3 id="countdown"></h3>
+    </div>
+
+    <script>
+        (function () {
+            var nextDateNode = document.getElementById('next-date');
+            var countdownNode = document.getElementById('countdown');
+            var nextDate = new Date(nextDateNode.getAttribute('title'));
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            function updateCountdown() {
+                var now = new Date();
+                var delta = nextDate - now;
+
+                var hours = Math.floor((delta % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((delta % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((delta % (1000 * 60)) / 1000);
+
+                countdownNode.textContent = 'in ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+            }
+        }());
+    </script>
+{% endblock %}
