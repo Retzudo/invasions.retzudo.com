@@ -16,6 +16,9 @@
             updateCountdown();
             setInterval(updateCountdown, 1000);
 
+            nextDateNode.textContent = nextDate;
+
+
             function updateCountdown() {
                 var now = new Date();
                 var delta = nextDate - now;

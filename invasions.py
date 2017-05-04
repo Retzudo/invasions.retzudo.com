@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import pytz
 
 
 class InvasionTimer:
@@ -7,7 +8,7 @@ class InvasionTimer:
 
     def __init__(self, now=None):
         if now is None:
-            now = datetime.now()
+            now = datetime.now(tz=pytz.utc)
 
         self.now = now
 
@@ -15,8 +16,8 @@ class InvasionTimer:
     def next_invasion_date(self):
         """Return the next invasion date.
         Invasions start every 18.5 hours and last 6 hours."""
-        # This is our base date. We now an invasion happened at that point.
-        invasion_date = datetime(2017, 5, 2, 8, 30, 0)
+        # This is our base date. We now an invasion happened at that point (UTC).
+        invasion_date = datetime(2017, 5, 2, 6, 30, 0, tzinfo=pytz.utc)
 
         while True:
             # Add 18.5h hours to the first know date
