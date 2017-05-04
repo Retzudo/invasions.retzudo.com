@@ -12,7 +12,7 @@ def json():
         'last_invasion': invasion_timer.last_invasion_date.isoformat(),
         'next_invasion': invasion_timer.next_invasion_date.isoformat(),
         'invasion_running': invasion_timer.invasion_running,
-        'time_left': invasion_timer.invasion_time_left,
+        'time_left': int(invasion_timer.invasion_time_left.total_seconds()),
     })
 
 

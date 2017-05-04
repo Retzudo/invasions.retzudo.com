@@ -11,8 +11,7 @@
             var countdownNode = document.getElementById('countdown');
             var startDate = new Date(countdownNode.getAttribute('title'));
             var endDate = new Date(startDate);
-            endDate.setTime(endDate.getTime() + (8 * 60 * 60 * 1000));
-            console.log('end date', endDate);
+            endDate.setTime(endDate.getTime() + (6 * 60 * 60 * 1000));
 
             updateCountdown();
             setInterval(updateCountdown, 1000);
